@@ -1,0 +1,4 @@
+[console_scripts]
+crapper = ub_tools.crapper:main
+dryer = ub_tools.dryer:main
+mutator = ub_tools.mutator:main

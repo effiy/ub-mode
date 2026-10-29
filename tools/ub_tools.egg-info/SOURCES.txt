@@ -1,0 +1,12 @@
+pyproject.toml
+ub_tools/__init__.py
+ub_tools/crapper.py
+ub_tools/dryer.py
+ub_tools/mutator.py
+ub_tools/shared.py
+ub_tools.egg-info/PKG-INFO
+ub_tools.egg-info/SOURCES.txt
+ub_tools.egg-info/dependency_links.txt
+ub_tools.egg-info/entry_points.txt
+ub_tools.egg-info/requires.txt
+ub_tools.egg-info/top_level.txt

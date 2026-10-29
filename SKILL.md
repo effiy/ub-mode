@@ -107,20 +107,36 @@ Every time you are asked to make a change follow:
 
 ## Crapper
 
-* Use the crapper tool
-* Reduce each function under  CRAP 10 by splitting it, by testing it, or both.
-* Consider whether case statements are worth reducing.
+* Run `ub-quality crapper --root <project-dir> --threshold 10` to score every function.
+* The tool computes CRAP = CC² × (1 − coverage)³ + CC for each function found.
+* Reduce each function whose CRAP ≥ 10 by splitting it, by testing it, or both.
+* Use `--json` to pipe results into post-processing or trend tracking.
+* Run with `--no-coverage` when no test suite is wired yet (coverage and CRAP show N/A).
+* In DSH, the venv is at `ub-mode/.venv`; the launcher is `ub-mode/tools/bin/ub-quality`.
 
 ## Dryer
 
-* Use the dryer tool to eliminate duplication that rank 0.8 or above.
+* Run `ub-quality dryer --root <project-dir> --threshold 0.8` to find structural duplicates.
+* Eliminate every duplicate whose similarity ≥ 0.8 — extract a shared helper, a base
+  class, or a parameterised function.
+* The tool normalises code to a structural skeleton (strips identifiers, literals,
+  whitespace) before computing Jaccard similarity on token sets.
+* Lower `--min-lines` to catch smaller copy-paste blocks; raise `--threshold` to
+  tighten the gate.
 
 ## Mutator
 
-* Use the mutator tool
-* Cover the uncovered.
-* Kill the survivors.
-* Delete dead code.
+* Run `ub-quality mutator --root <project-dir> --test-command "<cmd>"` to perform
+  mutation testing.
+* The tool injects mutation operators (invert-condition, remove-statement, invert-return)
+  into source files, runs the test command for each, and reports survivors.
+* Cover the uncovered — every surviving mutation is a gap in the test suite.
+* Kill the survivors — write a test that catches each surviving mutation, then re-run.
+* Delete dead code — code that no mutation or test touches is unreachable and can be
+  removed.
+* Set `--timeout` (seconds per mutation, default 60) higher for slow integration suites.
+* Use `--operators invert-condition,remove-statement` to limit the mutation set for
+  faster feedback.
 
 ## Refactoring
 

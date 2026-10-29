@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: ub-tools
+Version: 0.1.0
+Summary: UB-Mode Quality Gate Tools: crapper (CRAP scoring), dryer (duplicate detection), mutator (mutation testing) — for use in DSH environments.
+License: MIT
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: tree-sitter>=0.24
+Requires-Dist: tree-sitter-language-pack>=0.7
